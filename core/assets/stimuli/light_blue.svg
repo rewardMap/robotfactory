@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="74.262131mm"
+   height="78.353348mm"
+   viewBox="0 0 74.262131 78.353348"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="robot.svg"
+   inkscape:export-filename="robot.png"
+   inkscape:export-xdpi="129.66899"
+   inkscape:export-ydpi="129.66899"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="2.1927181"
+     inkscape:cx="152.55039"
+     inkscape:cy="150.72617"
+     inkscape:window-width="1792"
+     inkscape:window-height="932"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g62">
+    <inkscape:grid
+       id="grid12"
+       units="mm"
+       originx="-69.250441"
+       originy="-35.101435"
+       spacingx="0.26458333"
+       spacingy="0.26458334"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="104.56587 : 72.131309 : 1"
+       inkscape:vp_y="0 : 406.0155 : 0"
+       inkscape:vp_z="134.6282 : 71.899129 : 1"
+       inkscape:persp3d-origin="136.87082 : 40.38917 : 1"
+       id="perspective1" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="117.31081 : -61.447456 : 1"
+       inkscape:vp_y="0 : 346.91925 : 0"
+       inkscape:vp_z="190.18206 : -52.735256 : 1"
+       inkscape:persp3d-origin="167.20193 : -79.124605 : 1"
+       id="perspective1-0" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="100.71293 : -72.969216 : 1"
+       inkscape:vp_y="0 : 976.59722 : 0"
+       inkscape:vp_z="305.84961 : -48.443876 : 1"
+       inkscape:persp3d-origin="241.15927 : -122.73139 : 1"
+       id="perspective1-7" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-69.250444,-35.101436)">
+    <g
+       id="g41"
+       style="fill:#808080"
+       transform="translate(-36.348008,21.203005)" />
+    <g
+       id="g62"
+       style="fill:#bfbfbf">
+      <path
+         id="path54"
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#0000fb;stroke:none;stroke-width:1.56316;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:16.6299;paint-order:fill markers stroke;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill-opacity:1;opacity:0.25"
+         d="m 77.816064,113.41232 c -2.789183,0 -5.578353,0 -8.367523,0 7.372236,-26.033689 14.744471,-52.067381 22.116718,-78.101069 9.876711,0 19.753421,0 29.630131,0 7.37303,26.036301 14.74606,52.072603 22.1191,78.108909 -21.83123,-0.005 -43.675145,0.0105 -65.498426,-0.008 z" />
+    </g>
+  </g>
+</svg>
