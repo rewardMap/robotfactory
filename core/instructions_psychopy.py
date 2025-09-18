@@ -27,6 +27,8 @@ except ImportError:
 import json
 import pathlib
 
+from .backend_psychopy import render_letter_to_array
+
 instructions_path = (
     pathlib.Path(__file__).parent.resolve() / "assets" / "instructions_en.json"
 )
@@ -34,60 +36,43 @@ instructions = json.loads(instructions_path.read_text())
 
 
 def instructions_psychopy():
-    fix = fixation_cross()
-    winning = win_cross()
-    target = mid_stimuli(
-        other_color="gray", shape="circle", probe=False, amount="", shape_dim=250
-    )
 
-    robot = draw_robot(
-        height=450,
-        width=450,
-        body_color=(100, 250, 100),
-        second_color=(100, 250, 100),
-        button_color="gray",
-    )
+    directory = pathlib.Path(__file__).parents[0].resolve() / "assets"
 
-    robot_w = draw_robot(
-        height=450,
-        width=450,
-        body_color="white",
-        second_color="white",
-        button_color="gray",
-    )
+    robot_fig = directory / "stimuli" / "robot.png"
+    light_blue = directory / "stimuli" / "light_blue.png"
+    light_red = directory / "stimuli" / "light_red.png"
 
-    nothing = zero_cross(
-        width=100, height=100, circle_radius_inner=10, circle_radius_outer=15
-    )
-    winning = win_cross(
-        width=100, height=100, circle_radius_inner=10, circle_radius_outer=15
-    )
-    lose = lose_cross(
-        width=100, height=100, circle_radius_inner=10, circle_radius_outer=15
-    )
+    robot_fig = robot_fig.as_posix()
+    light_blue = light_blue.as_posix()
+    light_red = light_red.as_posix()
+
+    font_path = directory / "BACS2sans.otf"
+
+    if not font_path.is_file():
+        font_path = None
+    else:
+        try:
+            font_path = font_path.as_posix()
+        except:
+            pass
+
+
+    robot_labels = ["1", "2", "3", "4"]
+
+    letter_arrays = [render_letter_to_array(l.upper(), font_path=font_path) for l in robot_labels]
+
 
     def part_0(win, instructions):
         part_0_0 = TextBox2(
             win=win,
-            text=instructions["0.0"],
+            text=instructions["0.0"] + "\n\n" + instructions["0.1"],
             letterHeight=28,
             pos=(0, 150),
         )
 
-        img_card = ImageStim(win=win, image=robot_w, pos=(0, -160), size=(200, 200))
-        img_card.draw()
-
         part_0_0.draw()
 
-    def part_01(win, instructions):
-        part_0_0 = TextBox2(
-            win=win,
-            text=instructions["0.1"],
-            letterHeight=28,
-            pos=(0, 100),
-        )
-
-        part_0_0.draw()
 
     def part_1(win, instructions):
         part_1_0 = TextBox2(
@@ -97,8 +82,8 @@ def instructions_psychopy():
             pos=(0, 200),
         )
 
-        img_card = ImageStim(win=win, image=robot, pos=(0, 0), size=(350, 350))
-        img_card.draw()
+        robot_img = ImageStim(win=win, image=robot_fig, pos=(0, 0), size=(300, 300))
+        robot_img.draw()
         part_1_0.draw()
 
     def part_2(win, instructions):
@@ -106,81 +91,161 @@ def instructions_psychopy():
             win=win,
             text=instructions["2.0"],
             letterHeight=28,
-            pos=(0, 150),
+            pos=(0, 200),
         )
 
-        img_fix = ImageStim(win=win, image=fix, pos=(0, 0), size=fix.shape[:2])
-        img_fix.draw()
+        robot_img = ImageStim(win=win, image=robot_fig, pos=(0, 0), size=(300, 300))
+        letter = ImageStim(win, image=letter_arrays[0], pos=(0, 0), size=(96, 96))
+        robot_img.draw()
+        letter.draw()
         part_2_0.draw()
+
 
     def part_3(win, instructions):
         part_3_0 = TextBox2(
             win=win,
-            text=instructions["3.0"],
+            text=instructions["3.0"] + "\n\n\n" + instructions["3.1"] + "\n\n" + instructions["3.2"],
             letterHeight=28,
             pos=(0, 175),
         )
 
-        img_fix = ImageStim(win=win, image=target, pos=(0, 0), size=target.shape[:2])
-        img_fix.draw()
         part_3_0.draw()
 
     def part_4(win, instructions):
-        start_pos = 280
-
-        start_pos -= 65
-
-        part_4_1 = TextBox2(
+        part_4_0 = TextBox2(
             win=win,
-            text=instructions["4.1"],
+            text=instructions["4.0"],
             letterHeight=28,
-            pos=(0, start_pos),
+            pos=(0, 175),
         )
 
-        start_pos -= 75
-        img2 = ImageStim(
-            win=win, image=winning, pos=(0, start_pos), size=winning.shape[:2]
-        )
-
-        start_pos -= 85
-
-        part_4_2 = TextBox2(
-            win=win,
-            text=instructions["4.2"],
-            letterHeight=28,
-            pos=(0, start_pos),
-        )
-
-        start_pos -= 65
-        img3 = ImageStim(win=win, image=lose, pos=(0, start_pos), size=lose.shape[:2])
-
-        start_pos -= 85
-        part_4_3 = TextBox2(
-            win=win,
-            text=instructions["4.3"],
-            letterHeight=28,
-            pos=(0, start_pos),
-        )
-
-        start_pos -= 65
-        img4 = ImageStim(
-            win=win, image=nothing, pos=(0, start_pos), size=nothing.shape[:2]
-        )
-
-        for ii in [part_4_1, part_4_2, part_4_3, img2, img3, img4]:
-            ii.draw()
+        part_4_0.draw()
 
     def part_5(win, instructions):
         part_5_0 = TextBox2(
             win=win,
             text=instructions["5.0"],
             letterHeight=28,
-            alignment="center",
+            pos=(0, 250),
+        )
+
+        part_5_1 = TextBox2(
+            win=win,
+            text=instructions["5.1"],
+            letterHeight=28,
+            pos=(-200, 175),
+        )
+
+        part_5_2 = TextBox2(
+            win=win,
+            text=instructions["5.2"],
+            letterHeight=28,
+            pos=(0, 175),
+        )
+
+        part_5_3 = TextBox2(
+            win=win,
+            text=instructions["5.3"],
+            letterHeight=28,
+            pos=(200, 175),
+        )
+
+
+        robot_img = ImageStim(win=win, image=robot_fig, pos=(-200, 0), size=(300, 300))
+        robot_img2 = ImageStim(win=win, image=robot_fig, pos=(200, 0), size=(300, 300))
+
+        blue = ImageStim(win=win, image=light_blue, pos=(-200, 0), size=(300, 300))
+        red = ImageStim(win=win, image=light_red, pos=(200, 0), size=(300, 300))
+
+        robot_img.draw()
+        robot_img2.draw()
+        blue.draw()
+        red.draw()
+
+        part_5_0.draw()
+        part_5_1.draw()
+        part_5_2.draw()
+        part_5_3.draw()
+
+
+    def part_6(win, instructions):
+        part_6_0 = TextBox2(
+            win=win,
+            text=instructions["6.0"],
+            letterHeight=28,
+            pos=(0, 250),
+        )
+
+
+        robot_img = ImageStim(win=win, image=robot_fig, pos=(0, 0), size=(300, 300))
+
+        blue = ImageStim(win=win, image=light_blue, pos=(0, 0), size=(300, 300))
+
+        robot_img.draw()
+        blue.draw()
+
+        part_6_0.draw()
+
+    def part_7(win, instructions):
+        part_7_0 = TextBox2(
+            win=win,
+            text=instructions["7.0"],
+            letterHeight=28,
+            pos=(0, 250),
+        )
+
+
+        robot_img = ImageStim(win=win, image=robot_fig, pos=(0, 0), size=(300, 300))
+
+        blue = ImageStim(win=win, image=light_red, pos=(0, 0), size=(300, 300))
+
+        robot_img.draw()
+        blue.draw()
+
+        part_7_0.draw()
+
+    def part_8(win, instructions):
+        part_8_0 = TextBox2(
+            win=win,
+            text=instructions["8.0"],
+            letterHeight=28,
             pos=(0, 150),
         )
-        part_5_0.draw()
 
-        img_fix = ImageStim(win=win, image=target, pos=(0, -150), size=target.shape[:2])
-        img_fix.draw()
+        part_8_0.draw()
 
-    return [part_0, part_01, part_1, part_2, part_3, part_4, part_5], instructions
+
+    def part_9(win, instructions):
+        part_9_0 = TextBox2(
+            win=win,
+            text=instructions["9.0"] + "\n\n\n" + instructions["9.1"],
+            letterHeight=28,
+            pos=(0, 150),
+        )
+
+        part_9_0.draw()
+
+
+    def part_10(win, instructions):
+        part_10_0 = TextBox2(
+            win=win,
+            text=instructions["10.0"],
+            letterHeight=28,
+            pos=(0, 150),
+        )
+
+        part_10_0.draw()
+
+
+    def part_11(win, instructions):
+        part_11_0 = TextBox2(
+            win=win,
+            text=instructions["11.0"],
+            letterHeight=28,
+            pos=(0, 150),
+        )
+
+        part_11_0.draw()
+
+
+    return [part_0, part_1, part_2, part_3, part_4, part_5,part_6,part_7,part_8,part_9,part_10,part_11], instructions

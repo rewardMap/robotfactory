@@ -146,7 +146,10 @@ def get_psychopy_info(
     light_blue = light_blue.as_posix()
     light_red = light_red.as_posix()
 
-    font_path = directory / "BACS2sans.otf"
+    if external_stimuli is None:
+        font_path = directory / "BACS2sans.otf"
+    else:
+        font_path = pathlib.Path(external_stimuli)
 
     if not font_path.is_file():
         font_path = None
@@ -160,7 +163,7 @@ def get_psychopy_info(
 
     robot_labels = random_state.choice(letters, 8, replace=False)
 
-    letter_arrays = [render_letter_to_array(l.upper(), font_path=font_path) for l in letters]
+    letter_arrays = [render_letter_to_array(l.upper(), font_path=font_path) for l in robot_labels]
 
     reward_feedback = FeedBackStimulus(
         1.0, text="{0}", target="reward", name="reward", bar_total=fullpoints, rl_label="reward"
