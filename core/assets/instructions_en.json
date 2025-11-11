@@ -12,10 +12,10 @@
     "5.2": "or",
     "5.3": "DANGEROUS",
     "6.0": "If the scanner is blue, the robot is SAFE. You will earn 5 points for correctly repairing or ignoring a safe robot. You will only earn 1 point for incorrect actions.",
-    "7.0": "If the scanner is red, the robot is DANGEROUS. You will lose -1 points for correctly repairing or ignoring a safe robot. You will lose -10 point for incorrect actions.",
+    "7.0": "If the scanner is red, the robot is DANGEROUS. You will lose -1 points for correctly repairing or ignoring a dangerous robot. You will lose -5 point for incorrect actions.",
     "8.0": "Only press the button once the robot has appeared and the scanner light is on.",
     "9.0": "Not all robots of the same type will need repair, but some robots will need repair more often than others!",
     "9.1": "Pay close attention to the robots symbol as it will help you decide whether to repair the robot or ignore the robot.",
     "10.0": "Try to earn, and avoid losing, as many points as you can.",
-    "11.0": "Remember:\nWhen the scanner light appears you need to decide, whether to press it (LEFT) or NOT?\n\nNot all robots of the same type will need repair, but some robots will need repair more often than others!"
+    "11.0": "Remember:\nWhen the scanner light appears you need to decide, whether to repair the robot (LEFT) or NOT?\n\nNot all robots of the same type will need repair, but some robots will need repair more often than others!"
 }

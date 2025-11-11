@@ -21,9 +21,9 @@ def get_configs(stimulus_set: str = "1"):
         "nogo-punish2": {0: {0: 12}},
     }
 
-    condition_template = ["go-win1", "go-punish1", "nogo-win1", "nogo-punish1"] * 8 + ["go-win2", "go-punish2", "nogo-win2", "nogo-punish2"] * 7  # 80 %
-    iti_template = [0.5, 0.75, 1.0, 1.25] * 15
-    isi_template = [0.25, 0.75, 1.125, 1.75, 2.0] * 12  # 5 * 12 = 60
+    condition_template = ["go-win1", "go-punish1", "nogo-win1", "nogo-punish1"] * 8 + ["go-win2", "go-punish2", "nogo-win2", "nogo-punish2"] * 8  # 80 %
+    iti_template = [0.5, 0.75, 1.0, 1.25] * 16
+    isi_template = [0.5, 0.75, 1.0, 1.25] * 16  # 5 * 12 = 60
 
     n_blocks = 3
 
@@ -51,7 +51,7 @@ def get_configs(stimulus_set: str = "1"):
         "ntrials": len(conditions),
         "update": ["cue", "iti"],
         "add_remainder": True,
-        "breakpoints": [59, 119],
+        "breakpoints": [63, 127],
         "break_duration": 45,
     }
 

@@ -6,6 +6,7 @@ try:
         FeedBackStimulus,
         ActionStimulus,
         BaseStimulus,
+        LingeringAction
     )
     from ....stimuli import (
         fixation_cross,
@@ -25,6 +26,7 @@ except ImportError:
         FeedBackStimulus,
         ActionStimulus,
         BaseStimulus,
+        LingeringAction
     )
     from rewardgym.stimuli import (
         fixation_cross,
@@ -141,10 +143,12 @@ def get_psychopy_info(
     robot_fig = directory / "stimuli" / "robot.png"
     light_blue = directory / "stimuli" / "light_blue.png"
     light_red = directory / "stimuli" / "light_red.png"
+    factory = directory / "stimuli" / "factory.png"
 
     robot_fig = robot_fig.as_posix()
     light_blue = light_blue.as_posix()
     light_red = light_red.as_posix()
+    factory = factory.as_posix()
 
     if external_stimuli is None:
         font_path = directory / "BACS2sans.otf"
@@ -172,7 +176,7 @@ def get_psychopy_info(
     stimuli = {"letters": letters}
 
     base_stim = ImageStimulus(
-        image_paths=[fixation_cross()], duration=0.3, name="fixation", autodraw=True
+        image_paths=[fixation_cross(), factory], duration=0.3, name="fixation", autodraw=True
     )
 
     fix_isi = ImageStimulus(
@@ -189,17 +193,35 @@ def get_psychopy_info(
                 name="cue",
                 rl_label="obs"
             ),
-            ImageStimulus(
-                duration=0.001,
-                image_paths=[robot_fig, letter, light ],
-                positions=[(0, 0), (0, 0), (0, 0)],
-                name="target",
-            ),
-            ActionStimulus(duration=1.0, key_dict=key_dict, timeout_action=1, rl_label="action"),
+            #ImageStimulus(
+            #    duration=0.001,
+            #    image_paths=[robot_fig, letter, light ],
+            #    positions=[(0, 0), (0, 0), (0, 0)],
+            #    name="target",
+            #),
+            LingeringAction(
+                duration=1.0,
+                duration_phase1=0.01,
+                duration_phase2=0.5,
+                rl_label="action",
+                key_dict=key_dict,
+                name="response",
+                name_phase1="target",
+                name_phase2="delay",
+                timeout_action=1,
+                name_timeout="response-time-out",
+                positions_phase1=((0, 0), (0, 0), (0, 0)),
+                positions_phase2=((0, 0), (0, 0)),
+                images_phase1=[robot_fig, letter, light],
+                images_phase2=[robot_fig, letter],
+                rl_label_phase1=None,
+                rl_label_phase2="obs",
+            )
+            # ActionStimulus(duration=1.0, key_dict=key_dict, timeout_action=1, rl_label="action"),
         ]
 
     final_step = [
-        BaseStimulus(duration=1.0, name="reward-delay", rl_label="obs"),
+        BaseStimulus(duration=0.5, name="reward-delay", rl_label="obs"),
         reward_feedback,
         BaseStimulus(name="iti", duration=1.0),
     ]
