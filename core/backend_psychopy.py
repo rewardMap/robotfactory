@@ -176,7 +176,8 @@ def get_psychopy_info(
     stimuli = {"letters": letters}
 
     base_stim = ImageStimulus(
-        image_paths=[fixation_cross(), factory], duration=0.3, name="fixation", autodraw=True
+        image_paths=[fixation_cross(), factory], duration=0.3, name="fixation", autodraw=True,
+        positions=[(0, 0), (0, -3)]
     )
 
     fix_isi = ImageStimulus(

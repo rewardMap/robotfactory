@@ -1,10 +1,10 @@
 try:
-    from psychopy.visual import ImageStim, TextBox2
+    from psychopy.visual import ImageStim, TextBox2, TextStim
 except ModuleNotFoundError:
     try:
-        from rewardgym.psychopy_render.psychopy_stubs import ImageStim, TextBox2
+        from rewardgym.psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
     except ModuleNotFoundError:
-        from ....psychopy_render.psychopy_stubs import ImageStim, TextBox2
+        from ....psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
 try:
     from ....stimuli import (
         fixation_cross,
@@ -129,24 +129,24 @@ def instructions_psychopy():
             pos=(0, 250),
         )
 
-        part_5_1 = TextBox2(
+        part_5_1 = TextStim(
             win=win,
             text=instructions["5.1"],
-            letterHeight=28,
+            height=28,
             pos=(-200, 175),
         )
 
-        part_5_2 = TextBox2(
+        part_5_2 = TextStim(
             win=win,
             text=instructions["5.2"],
-            letterHeight=28,
+            height=28,
             pos=(0, 175),
         )
 
-        part_5_3 = TextBox2(
+        part_5_3 = TextStim(
             win=win,
             text=instructions["5.3"],
-            letterHeight=28,
+            height=28,
             pos=(200, 175),
         )
 
