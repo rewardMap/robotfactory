@@ -1,12 +1,9 @@
-try:
-    from ....pygame_render import BaseText, BaseDisplay, FormatTextReward, TimedAction
-except ImportError:
-    from rewardgym.pygame_render.stimuli import (
-        BaseText,
-        BaseDisplay,
-        FormatTextReward,
-        TimedAction,
-    )
+from rewardgym.pygame_render.stimuli import (
+    BaseText,
+    BaseDisplay,
+    FormatTextReward,
+    TimedAction,
+)
 
 
 def get_pygame_info(action_map=None, window_size=256):

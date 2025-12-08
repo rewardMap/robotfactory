@@ -1,40 +1,21 @@
 from copy import deepcopy
 
-try:
-    from ....psychopy_render import (
-        ImageStimulus,
-        FeedBackStimulus,
-        ActionStimulus,
-        BaseStimulus,
-        LingeringAction
-    )
-    from ....stimuli import (
-        fixation_cross,
-        make_card_stimulus,
-        generate_stimulus_properties,
-        draw_robot,
-        mid_stimuli,
-        STIMULUS_DEFAULTS,
-    )
-    from ....utils import check_random_state
-
-except ImportError:
-    from rewardgym import check_random_state
-    from rewardgym.psychopy_render import (
-        ImageStimulus,
-        STIMULUS_DEFAULTS,
-        FeedBackStimulus,
-        ActionStimulus,
-        BaseStimulus,
-        LingeringAction
-    )
-    from rewardgym.stimuli import (
-        fixation_cross,
-        make_card_stimulus,
-        generate_stimulus_properties,
-        draw_robot,
-        mid_stimuli,
-    )
+from rewardgym import check_random_state
+from rewardgym.psychopy_render import (
+    ImageStimulus,
+    FeedBackStimulus,
+    ActionStimulus,
+    BaseStimulus,
+    LingeringAction
+)
+from rewardgym.stimuli import (
+    fixation_cross,
+    make_card_stimulus,
+    generate_stimulus_properties,
+    draw_robot,
+    mid_stimuli,
+    STIMULUS_DEFAULTS,
+)
 
 import string
 import pathlib
@@ -194,15 +175,9 @@ def get_psychopy_info(
                 name="cue",
                 rl_label="obs"
             ),
-            #ImageStimulus(
-            #    duration=0.001,
-            #    image_paths=[robot_fig, letter, light ],
-            #    positions=[(0, 0), (0, 0), (0, 0)],
-            #    name="target",
-            #),
             LingeringAction(
                 duration=1.0,
-                duration_phase1=0.01,
+                duration_phase1=0.0,
                 duration_phase2=0.5,
                 rl_label="action",
                 key_dict=key_dict,
@@ -218,7 +193,6 @@ def get_psychopy_info(
                 rl_label_phase1=None,
                 rl_label_phase2="obs",
             )
-            # ActionStimulus(duration=1.0, key_dict=key_dict, timeout_action=1, rl_label="action"),
         ]
 
     final_step = [

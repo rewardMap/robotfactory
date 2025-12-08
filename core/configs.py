@@ -1,9 +1,5 @@
-try:
-    from rewardgym.utils import check_random_state
-    from rewardgym.task.utils import check_conditions_present
-except ImportError:
-    from ...utils import check_conditions_present
-    from ....utils import check_random_state
+from rewardgym.utils import check_random_state
+from rewardgym.tasks.utils import check_conditions_present
 
 import numpy as np
 

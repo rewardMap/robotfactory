@@ -6,9 +6,8 @@ from .core import get_task
 
 try:
     from .core import get_configs
-except ImportError:
+except ImportError as e:
     get_configs = None
-
 try:
     from .core import get_psychopy_info
 except (ImportError, NameError):

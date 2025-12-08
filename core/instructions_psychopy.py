@@ -1,29 +1,17 @@
 try:
     from psychopy.visual import ImageStim, TextBox2, TextStim
 except ModuleNotFoundError:
-    try:
-        from rewardgym.psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
-    except ModuleNotFoundError:
-        from ....psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
-try:
-    from ....stimuli import (
-        fixation_cross,
-        lose_cross,
-        win_cross,
-        zero_cross,
-        draw_robot,
-        mid_stimuli,
-    )
+    from rewardgym.psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
 
-except ImportError:
-    from rewardgym.stimuli import (
-        fixation_cross,
-        lose_cross,
-        win_cross,
-        zero_cross,
-        draw_robot,
-        mid_stimuli,
-    )
+
+from rewardgym.stimuli import (
+    fixation_cross,
+    lose_cross,
+    win_cross,
+    zero_cross,
+    draw_robot,
+    mid_stimuli)
+
 import json
 import pathlib
 
