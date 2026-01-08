@@ -11,10 +11,10 @@ def get_configs(stimulus_set: str = "1"):
         "go-punish1": {0: {0: 2}},
         "nogo-win1": {0: {0: 3}},
         "nogo-punish1": {0: {0: 4}},
-        "go-win2": {0: {0: 9}},
-        "go-punish2": {0: {0: 10}},
-        "nogo-win2": {0: {0: 11}},
-        "nogo-punish2": {0: {0: 12}},
+        "go-win2": {0: {0: 5}},
+        "go-punish2": {0: {0: 6}},
+        "nogo-win2": {0: {0: 7}},
+        "nogo-punish2": {0: {0: 8}},
     }
 
     condition_template = ["go-win1", "go-punish1", "nogo-win1", "nogo-punish1"] * 8 + ["go-win2", "go-punish2", "nogo-win2", "nogo-punish2"] * 8  # 80 %

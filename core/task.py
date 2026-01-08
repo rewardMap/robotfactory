@@ -18,16 +18,17 @@ def get_task(
     info_dict, environment_graph = load_task_from_yaml(yaml_file)
 
     reward_structure = {
-        5: PseudoRandomReward(reward_list=[-5, -5, -1, -1, -1, -1, -1, -1, -1, -1], random_state=random_state),
-        6: PseudoRandomReward(
+        11: PseudoRandomReward(reward_list=[-5, -5, -1, -1, -1, -1, -1, -1, -1, -1], random_state=random_state),
+        12: PseudoRandomReward(
             reward_list=[-5, -5, -5, -5, -5, -5, -5, -5, -1, -1], random_state=random_state
         ),
-        7: PseudoRandomReward(reward_list=[5, 5, 5, 5, 5, 5, 5, 5, 1, 1], random_state=random_state),
-        8: PseudoRandomReward(reward_list=[1, 1, 1, 1, 1, 1, 1, 1, 5, 5], random_state=random_state),
+        9: PseudoRandomReward(reward_list=[5, 5, 5, 5, 5, 5, 5, 5, 1, 1], random_state=random_state),
+        10: PseudoRandomReward(reward_list=[1, 1, 1, 1, 1, 1, 1, 1, 5, 5], random_state=random_state),
     }
 
     info_dict.update(
-        {"position": {0: "go-win", 1: "go-punish", 2: "nogo-win", 3: "nogo-punish", 9: "go-win", 10: "go-punish", 11: "nogo-win", 12: "nogo-punish"}}
+        {"position": {1: "go-win", 2: "go-punish", 3: "nogo-win", 4: "nogo-punish",
+                      5: "go-win", 6: "go-punish", 7: "nogo-win", 8: "nogo-punish"}}
     )
 
     if render_backend == "pygame":

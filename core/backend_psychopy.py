@@ -191,14 +191,14 @@ def get_psychopy_info(
                 images_phase1=[robot_fig, letter, light],
                 images_phase2=[robot_fig, letter],
                 rl_label_phase1=None,
-                rl_label_phase2="obs",
+                rl_label_phase2=None,
             )
         ]
 
     final_step = [
-        BaseStimulus(duration=0.5, name="reward-delay", rl_label="obs"),
+        BaseStimulus(duration=0.5, name="reward-delay", rl_label=None),
         reward_feedback,
-        BaseStimulus(name="iti", duration=1.0),
+        BaseStimulus(name="iti", duration=1.0, rl_label='obs'),
     ]
 
     info_dict = {
@@ -207,14 +207,15 @@ def get_psychopy_info(
         2: {"psychopy": first_step(letter_arrays[1], light_red)},
         3: {"psychopy": first_step(letter_arrays[2], light_blue)},
         4: {"psychopy": first_step(letter_arrays[3], light_red)},
-        5: {"psychopy": final_step},
-        6: {"psychopy": final_step},
-        7: {"psychopy": final_step},
-        8: {"psychopy": final_step},
-        9: {"psychopy": first_step(letter_arrays[4], light_blue)},
-        10: {"psychopy": first_step(letter_arrays[5], light_red)},
-        11: {"psychopy": first_step(letter_arrays[6], light_blue)},
-        12: {"psychopy": first_step(letter_arrays[7], light_red)},
+        5: {"psychopy": first_step(letter_arrays[4], light_blue)},
+        6: {"psychopy": first_step(letter_arrays[5], light_red)},
+        7: {"psychopy": first_step(letter_arrays[6], light_blue)},
+        8: {"psychopy": first_step(letter_arrays[7], light_red)},
+        9: {"psychopy": final_step},
+        10: {"psychopy": final_step},
+        11: {"psychopy": final_step},
+        12: {"psychopy": final_step},
+
     }
 
     return info_dict, stimuli
