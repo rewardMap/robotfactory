@@ -48,7 +48,7 @@ def get_configs(stimulus_set: str = "1"):
         "update": ["cue", "iti"],
         "add_remainder": True,
         "breakpoints": [63, 127],
-        "break_duration": 45,
+        "break_duration": 30,
     }
 
     return config
