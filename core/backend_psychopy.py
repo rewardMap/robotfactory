@@ -154,7 +154,7 @@ def get_psychopy_info(
         1.0, text="{0}", target="reward", name="reward", bar_total=fullpoints, rl_label="reward"
     )
 
-    stimuli = {"letters": letters}
+    stimuli = {"letters": robot_labels}
 
     base_stim = ImageStimulus(
         image_paths=[fixation_cross(), factory], duration=0.3, name="fixation", autodraw=True,
