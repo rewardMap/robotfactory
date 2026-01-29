@@ -2,7 +2,7 @@ meta:
   name: "robotfactory"
   version: 0.0.1
   reduced_actions: Null
-  fullpoints: 43
+  fullpoints: 140
 graph:
   0:
     0:
