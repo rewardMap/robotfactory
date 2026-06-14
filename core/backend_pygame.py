@@ -1,4 +1,4 @@
-from rewardgym.pygame_render.stimuli import (
+from rewardgym.pygame_render import (
     BaseText,
     BaseDisplay,
     FormatTextReward,
