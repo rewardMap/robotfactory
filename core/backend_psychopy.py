@@ -17,6 +17,10 @@ from rewardgym.stimuli import (
     STIMULUS_DEFAULTS,
 )
 
+from rewardgym.render import ImageDefinition
+from rewardgym.render.passive_routines import PresentationRoutine, FeedBackRoutine
+
+
 import string
 import pathlib
 import math
@@ -150,28 +154,41 @@ def get_psychopy_info(
 
     letter_arrays = [render_letter_to_array(l.upper(), font_path=font_path) for l in robot_labels]
 
-    reward_feedback = FeedBackStimulus(
-        1.0, text="{0}", target="reward", name="reward", bar_total=fullpoints, rl_label="reward"
+    reward_feedback = FeedBackRoutine(
+        duration=1.0, name="reward", bar_total=fullpoints, rl_label="reward"
     )
 
     stimuli = {"letters": robot_labels.tolist()}
 
-    base_stim = ImageStimulus(
-        image_paths=[fixation_cross(), factory], duration=0.3, name="fixation", autodraw=True,
-        positions=[(0, 0), (0, -3)]
-    )
+    base_stim = PresentationRoutine(name="fixation", duration=0.3, stimulus_definitions=[
+        ImageDefinition(name="fix", autoDraw=True, image=fixation_cross(), pos=(0, 0)),
+        ImageDefinition(name="factory", autoDraw=True, image=factory, pos=(0, -3))])
 
-    fix_isi = ImageStimulus(
-        image_paths=[fixation_cross()], duration=0.3, name="isi", autodraw=False
-    )
+    fix_isi = PresentationRoutine(name="isi", duration=0.3, stimulus_definitions=[
+        ImageDefinition(
+            name="fix2",
+            autoDraw=True,
+            image=fixation_cross()
+        )
+    ])
 
     def first_step(letter, light):
         return [
             base_stim,
-            ImageStimulus(
+            PresentationRoutine(
                 duration=1.3,
-                image_paths=[robot_fig, letter],
-                positions=[(0, 0), (0, 0)],
+                stimulus_definitions=[
+                    ImageDefinition(
+                        name="robot-body",
+                        pos = (0, 0),
+                        image = robot_fig
+                    ),
+                    ImageDefinition(
+                        image=letter,
+                        pos=(0, 0),
+                        name="robot-label"
+                    ),
+                ],
                 name="cue",
                 rl_label="obs"
             ),
