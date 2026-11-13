@@ -112,7 +112,7 @@ def render_letter_to_array(
     return np.array(base_img)[::-1, :] / 255
 
 
-def get_psychopy_info(
+def get_render_info(
     random_state=None, key_dict={"space": 0}, external_stimuli=None, fullpoints=None, **kwargs
 ):
     random_state = check_random_state(random_state)
@@ -227,19 +227,19 @@ def get_psychopy_info(
     ]
 
     info_dict = {
-        0: {"psychopy": []},
-        1: {"psychopy": first_step(letter_arrays[0], light_blue)},
-        2: {"psychopy": first_step(letter_arrays[1], light_red)},
-        3: {"psychopy": first_step(letter_arrays[2], light_blue)},
-        4: {"psychopy": first_step(letter_arrays[3], light_red)},
-        5: {"psychopy": first_step(letter_arrays[4], light_blue)},
-        6: {"psychopy": first_step(letter_arrays[5], light_red)},
-        7: {"psychopy": first_step(letter_arrays[6], light_blue)},
-        8: {"psychopy": first_step(letter_arrays[7], light_red)},
-        9: {"psychopy": final_step},
-        10: {"psychopy": final_step},
-        11: {"psychopy": final_step},
-        12: {"psychopy": final_step},
+        0: {"render": []},
+        1: {"render": first_step(letter_arrays[0], light_blue)},
+        2: {"render": first_step(letter_arrays[1], light_red)},
+        3: {"render": first_step(letter_arrays[2], light_blue)},
+        4: {"render": first_step(letter_arrays[3], light_red)},
+        5: {"render": first_step(letter_arrays[4], light_blue)},
+        6: {"render": first_step(letter_arrays[5], light_red)},
+        7: {"render": first_step(letter_arrays[6], light_blue)},
+        8: {"render": first_step(letter_arrays[7], light_red)},
+        9: {"render": final_step},
+        10: {"render": final_step},
+        11: {"render": final_step},
+        12: {"render": final_step},
 
     }
 

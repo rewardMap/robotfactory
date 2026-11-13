@@ -9,14 +9,9 @@ try:
 except ImportError as e:
     get_configs = None
 try:
-    from .core import get_psychopy_info
+    from .core import get_render_info
 except (ImportError, NameError):
-    get_psychopy_info = None
-
-try:
-    from .core import get_pygame_info
-except (ImportError, NameError):
-    get_pygame_info = None
+    get_render_info = None
 
 try:
     from .core import instructions_psychopy
@@ -37,8 +32,7 @@ def register_task():
         raw["meta"]["name"]: {
             "get_task": get_task,
             "get_configs": get_configs,
-            "get_pygame_info": get_pygame_info,
-            "get_psychopy_info": get_psychopy_info,
+            "get_render_info": get_render_info,
             "instructions_psychopy": instructions_psychopy,
         }
     }

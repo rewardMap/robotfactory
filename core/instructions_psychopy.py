@@ -15,7 +15,7 @@ from rewardgym.stimuli import (
 import json
 import pathlib
 
-from .backend_psychopy import render_letter_to_array
+from .render import render_letter_to_array
 
 instructions_path = (
     pathlib.Path(__file__).parent.resolve() / "assets" / "instructions_en.json"
