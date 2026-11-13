@@ -5,10 +5,8 @@ try:
 except ImportError as e:
     print(f"[WARN] Could not register get_configs : {e}")
 
-from .render import get_render_info
-
 from .instructions_psychopy import instructions_psychopy
-
+from .render import get_render_info
 
 __all__ = [
     "get_configs",

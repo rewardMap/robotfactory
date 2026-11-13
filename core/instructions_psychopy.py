@@ -4,13 +4,6 @@ except ModuleNotFoundError:
     from rewardgym.psychopy_render.psychopy_stubs import ImageStim, TextBox2, TextStim
 
 
-from rewardgym.stimuli import (
-    fixation_cross,
-    lose_cross,
-    win_cross,
-    zero_cross,
-    draw_robot,
-    mid_stimuli)
 
 import json
 import pathlib
@@ -40,10 +33,7 @@ def instructions_psychopy():
     if not font_path.is_file():
         font_path = None
     else:
-        try:
-            font_path = font_path.as_posix()
-        except:
-            pass
+        font_path = pathlib.Path(font_path).as_posix()
 
 
     robot_labels = ["1", "2", "3", "4"]

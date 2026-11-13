@@ -1,29 +1,21 @@
-from copy import deepcopy
 
-from rewardgym import check_random_state
-
-from rewardgym.stimuli import (
-    fixation_cross,
-    make_card_stimulus,
-    generate_stimulus_properties,
-    draw_robot,
-    mid_stimuli,
-    STIMULUS_DEFAULTS,
-)
-
-from rewardgym.render import ImageDefinition
-from rewardgym.render.passive_routines import PresentationRoutine, FeedBackRoutine
-from rewardgym.render.response_routines import ChangeSceneAfterAction
-
-import string
-import pathlib
-import math
 import os
-from PIL import Image, ImageDraw, ImageFont
+import pathlib
+import string
+
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.font_manager import FontProperties
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.font_manager import FontProperties
+from PIL import Image, ImageDraw
+
+from rewardgym import check_random_state
+from rewardgym.render import ImageDefinition
+from rewardgym.render.passive_routines import FeedBackRoutine, PresentationRoutine
+from rewardgym.render.response_routines import ChangeSceneAfterAction
+from rewardgym.stimuli import (
+    fixation_cross,
+)
 
 
 def render_letter_to_array(
@@ -113,8 +105,10 @@ def render_letter_to_array(
 
 
 def get_render_info(
-    random_state=None, key_dict={"space": 0}, external_stimuli=None, fullpoints=None, **kwargs
+    random_state=None, key_dict=None, external_stimuli=None, fullpoints=None, **kwargs
 ):
+    if key_dict is None:
+        key_dict = {"space": 0}
     random_state = check_random_state(random_state)
 
     directory = pathlib.Path(__file__).parents[0].resolve() / "assets"
@@ -137,10 +131,7 @@ def get_render_info(
     if not font_path.is_file():
         font_path = None
     else:
-        try:
-            font_path = font_path.as_posix()
-        except:
-            pass
+        font_path = pathlib.Path(font_path).as_posix()
 
     letters = list(string.ascii_lowercase)
 
@@ -158,7 +149,7 @@ def get_render_info(
         ImageDefinition(name="fix", autoDraw=True, image=fixation_cross(), pos=(0, 0)),
         ImageDefinition(name="factory", autoDraw=True, image=factory, pos=(0, -3))])
 
-    fix_isi = PresentationRoutine(name="isi", duration=0.3, stimulus_definitions=[
+    PresentationRoutine(name="isi", duration=0.3, stimulus_definitions=[
         ImageDefinition(
             name="fix2",
             autoDraw=True,
