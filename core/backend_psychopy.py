@@ -1,13 +1,7 @@
 from copy import deepcopy
 
 from rewardgym import check_random_state
-from rewardgym.psychopy_render import (
-    ImageStimulus,
-    FeedBackStimulus,
-    ActionStimulus,
-    BaseStimulus,
-    LingeringAction
-)
+
 from rewardgym.stimuli import (
     fixation_cross,
     make_card_stimulus,
@@ -19,7 +13,7 @@ from rewardgym.stimuli import (
 
 from rewardgym.render import ImageDefinition
 from rewardgym.render.passive_routines import PresentationRoutine, FeedBackRoutine
-
+from rewardgym.render.response_routines import ChangeSceneAfterAction
 
 import string
 import pathlib
@@ -192,30 +186,44 @@ def get_psychopy_info(
                 name="cue",
                 rl_label="obs"
             ),
-            LingeringAction(
-                duration=1.0,
-                duration_phase1=0.0,
-                duration_phase2=0.5,
-                rl_label="action",
-                key_dict=key_dict,
+            ChangeSceneAfterAction(
                 name="response",
-                name_phase1="target",
-                name_phase2="delay",
+                rl_label="action",
+                duration=1.0,
+                key_dict=key_dict,
+                stimulus_definitions=[
+                    ImageDefinition(
+                        name="robot",
+                        image=robot_fig,
+                        pos=(0, 0)
+                    ),
+                    ImageDefinition(
+                        name="label",
+                        image=letter,
+                        pos=(0, 0),
+                    ),
+                    ImageDefinition(
+                        name="light",
+                        image=light,
+                        pos=(0, 0)
+                    )
+                ],
                 timeout_action=1,
-                name_timeout="response-time-out",
-                positions_phase1=((0, 0), (0, 0), (0, 0)),
-                positions_phase2=((0, 0), (0, 0)),
-                images_phase1=[robot_fig, letter, light],
-                images_phase2=[robot_fig, letter],
-                rl_label_phase1=None,
-                rl_label_phase2=None,
+                name_timeout="reponse-time-out",
+                presentation_settings={
+                    "name_before": "target",
+                    "name_after": "delay",
+                    "duration_after": 0.5,
+                    "present_after": True
+                },
+                draw_stims_after=["robot", "label"]
             )
-        ]
 
+        ]
     final_step = [
-        BaseStimulus(duration=0.5, name="reward-delay", rl_label=None),
+        PresentationRoutine(duration=0.5, name="reward-delay", rl_label=None),
         reward_feedback,
-        BaseStimulus(name="iti", duration=1.0, rl_label='obs'),
+        PresentationRoutine(name="iti", duration=1.0, rl_label='obs'),
     ]
 
     info_dict = {
