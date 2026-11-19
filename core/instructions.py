@@ -1,11 +1,12 @@
-from rewardgym.render.routines.passive_routines import InstructionRoutine
-from rewardgym.render.stimulus_definitions import TextDefinition, ImageDefinition, RectangleDefinition
-from rewardgym.utils import NameCounter
-
-
-
 import json
 import pathlib
+
+from rewardgym.render.routines.passive_routines import InstructionRoutine
+from rewardgym.render.stimulus_definitions import (
+    ImageDefinition,
+    TextDefinition,
+)
+from rewardgym.utils import NameCounter
 
 from .render import render_letter_to_array
 

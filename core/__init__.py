@@ -10,7 +10,7 @@ from .render import get_render_info
 
 __all__ = [
     "get_configs",
+    "get_instructions",
     "get_render_info",
     "get_task",
-    "get_instructions",
 ]

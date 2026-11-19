@@ -11,8 +11,11 @@ from PIL import Image, ImageDraw
 
 from rewardgym import check_random_state
 from rewardgym.render import ImageDefinition
-from rewardgym.render.routines import FeedBackRoutine, PresentationRoutine
-from rewardgym.render.routines import ChangeSceneAfterAction
+from rewardgym.render.routines import (
+    ChangeSceneAfterAction,
+    FeedBackRoutine,
+    PresentationRoutine,
+)
 from rewardgym.render.stimuli import (
     fixation_cross,
 )
